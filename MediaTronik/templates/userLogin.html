@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{t}}</title>
+</head>
+<body>
+    <div class="header">
+        <h1>{{h}}</h1>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <div class="container">
+        <h1>Iniciar Sesion</h1>
+        <form action="/verifyFirstAccess" method="post">
+            {% if result %}
+                <p>{{ result }}</p>
+            {% endif %}
+            <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            <input type="submit" value="Iniciar Sesion">
+        </form>
+        <p>¿No tienes una cuenta? <a href="{{ url_for('sigin') }}">Registrate aqui</a></p>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <div class="footer">
+        <p>2023 Rotten Tomatoes. Todos Los Derechos Reservados</p>
+    </div>
+</body>
+</html>

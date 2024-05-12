@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{t}}</title>
+</head>
+<body>
+    <div class="header">
+        <h1>{{h}}</h1>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+
+    {% if is_registered == False %}
+        <div class="container">
+            <h1>Registrar usuario</h1>
+                {% if result %}
+                    <p>{{ result }}</p>
+                {% endif %}
+            <form method="post" action="{{ url_for('insertUser', is_register='False') }}">
+                <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <input type="submit" value="Registrar">
+                <p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Acceder aqui</a></p>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if is_registered == True %}
+    <div class="container">
+        <h1>Iniciar Sesion</h1>
+        {% if result %}
+            <p>{{ result }}</p>
+        {% endif %}
+        <form method="post" action="{{ url_for('insertDataUser', is_register='True') }}">
+            <input type="text" id="name" name="name" placeholder="Nombre" required>
+            <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+            <input type="submit" value="Finalizar Registro">
+        </form>
+    </div>
+    {% endif %}
+    <div class="footer">
+        <p>2023 Rotten Tomatoes. Todos Los Derechos Reservados</p>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+</body>
+</html>

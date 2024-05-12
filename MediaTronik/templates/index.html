@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<!-- href="/static/assets/style.css"-->
+		<link rel="stylesheet" href="/static/assets/style.css" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+<body class="index_page">
+    <header>
+    	<h1><a href="{{ url_for('listMoviesSeries') }}">{{ h }}</a></h1>
+  	</header>
+	<nav>
+    	<a href="{{ url_for('listMoviesSeries') }}">Inicio</a> |
+    	<a href="{{ url_for('searchMedia', format='movie') }}">Películas</a>|
+        <a href="{{ url_for('searchMedia', format='series') }}">Series</a>|
+    	<a href="{{ url_for('sigin') }}">Sign In </a> |
+    	<a href="{{ url_for('login') }}">Log In</a>
+        {% if 'username' in session %}
+        |
+        <a href="{{ url_for('logout') }}">Cerrar sesion</a>
+        {% endif %}
+        <br><br>
+        <form action="{{ url_for('searchMedia') }}" method="get">
+            <label for="search_query">Buscar:</label>
+            <input type="text" id="search_query" name="query" placeholder="Ingrese su búsqueda">
+        </form>
+  	</nav>
+     {% if 'username' in session %}
+        <p>Welcome {{ session['username'] }}</p>
+    {% endif %}
+	<main>
+        <h2>Movies</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                {% for movie in movies %}
+                    <div class="slide">
+                        <a href="{{ url_for('mediaPage', id=movie._id) }}">
+                            <img src="static/images/{{ movie._id }}.jpg" alt="{{ movie.title }}">
+                        </a>
+                        <a href="{{ url_for('mediaPage', id=movie._id) }}">
+                            <p>{{ movie.title }} </p>
+                        </a>
+                        <p>{{ movie.Rating }}</p>
+                    </div>
+                 {% endfor %}
+            </div>
+        </div>
+    <br><br>
+        <h2>Series</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                {% for serie in series %}
+                    <div class="slide">
+                        <a href="{{ url_for('mediaPage', id=serie._id) }}">
+                            <img src="static/images/{{ serie._id }}.jpg" alt="{{ serie.title }}">
+                        </a>
+                        <a href="{{ url_for('mediaPage', id=serie._id) }}">
+                            <p>{{ serie.title }} </p>
+                        </a>
+                        <p>{{ serie.Rating }}</p>
+                    </div>
+                 {% endfor %}  
+            </div>
+        </div>
+    <br><br>
+    {% if random_movies_1 %}
+        <h2>{{ random_genres_1 }}</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                {% for movie in random_movies_1 %}
+                    <div class="slide">
+                        <a href="{{ url_for('mediaPage', id=movie._id) }}">
+                            <img src="static/images/{{ movie._id }}.jpg" alt="{{ movie.title }}">
+                        </a>
+                        <a href="{{ url_for('mediaPage', id=movie._id) }}">
+                            <p>{{ movie.title }} </p>
+                        </a>
+                            <p>{{ movie.Rating }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if random_movies_2 %}
+        <h2>{{ random_genres_2 }}</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                {% for movie in random_movies_2 %}
+                    <div class="slide">
+                        <a href="{{ url_for('mediaPage', id=movie._id) }}">
+                            <img src="static/images/{{ movie._id }}.jpg" alt="{{ movie.title }}">
+                        </a>
+                        <a href="{{ url_for('mediaPage', id=movie._id) }}">
+                            <p>{{ movie.title }} </p>
+                        </a>
+                            <p>{{ movie.Rating }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    </main>
+</body>
+</html>

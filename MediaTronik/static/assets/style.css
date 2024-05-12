@@ -1,0 +1,226 @@
+body.index_page {
+      background-color: #002f6c;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+.star label{ color:grey;}
+        .star input[type = "radio"]{ display:none;}
+        .star .clasificacion{
+      direction: rtl;/* right to left */
+      unicode-bidi: bidi-override;/* bidi de bidireccional */
+  }
+  .star  label:hover{color:orange;}
+  .star label:hover ~ label{color:orange;}
+  .star input[type = "radio"]:checked ~ label{color:orange;}
+
+body.index_page a{
+      color: white;
+    }
+body.search_page {
+    background-color: #002f6c;
+    font-family: Arial, sans-serif;
+}
+body.search_page main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+body.search_page h2 {
+    color: #333;
+}
+
+body.search_page ul {
+    list-style: none;
+    padding: 0;
+}
+
+body.search_page li {
+    margin-bottom: 1rem;
+}
+
+body.search_page td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+body.search_page td.center-text {
+    text-align: center;
+}
+
+body.search_page img {
+    max-width: 175px;
+    max-height: 500px;
+    border-radius: 5px;
+}
+
+body.search_page p {
+    color: #777;
+}
+    header {
+      background-color: #002a5c;
+      padding: 10px;
+      text-align: center;
+    }
+    header h1 a{
+        text-decoration: none;
+        color: #fff;
+    }
+    
+    nav {
+      background-color: #0066cc;
+      padding: 10px;
+      text-align: center;
+      color: white
+    }
+    nav a{
+        color: white
+    }
+    
+    body.index_page main {
+      margin: 20px;
+    }
+    /*
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #0066cc;
+      color: white;
+    }
+    */
+    .footer {
+      background-color: #002a5c;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    input[type="text"], input[type="password"] {
+      padding: 5px;
+      width: 200px;
+    }
+    
+    input[type="submit"] {
+      padding: 5px 20px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .error-message {
+      color: red;
+      margin-bottom: 10px;
+    }
+
+.header {
+      background-color: #222222;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      color: #222222;
+    }
+
+    .container h1,
+    .header h1 {
+        margin: 0;
+        color: #333333;
+    }
+
+ .container input[type="text"],
+.container input[type="password"],
+.container input[type="submit"], input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.container input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.container input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+    .carousel-container {
+      width:auto;
+      margin:auto;
+      overflow:scroll;
+      border: 1px solid #ccc;
+  }
+  
+  .carousel {
+      display:flex;
+      transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+      min-width:11%;
+      box-sizing:content-box;
+      border: 2px solid #ccc;  
+  }
+  
+  body.index_page img {
+      width: 100%;
+      height: 260px;
+      display:block; 
+      align-self:center;
+      text-align: center;
+  }
+
+  body.index_page p{
+    text-align: center;
+    padding: 0.1px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+  
+  /* Navigation Arrows */
+  .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+  }
+  
+  .prev {
+      left: 10px;
+  }
+  
+  .next {
+      right: 10px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+      .slide {
+          min-width: 100%;
+      }
+  }

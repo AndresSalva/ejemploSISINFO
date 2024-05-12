@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/assets/style.css" >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t }}</title>
+    <style>
+        body {
+            background-color: #002f6c; 
+            color: #333;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+            background-color: #e5e3e2; 
+        }
+        .movie-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .movie-info {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .ratings {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .rating {
+            flex-basis: 50%;
+        }
+        .movie-image {
+            margin-bottom: 10px;
+        }
+        .movie-details {
+            background-color: #eaf3ff;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    	<h1><a href="{{ url_for('listMoviesSeries') }}">{{ h }}</a></h1>
+  	</header>
+    <nav>
+    	<a href="{{ url_for('listMoviesSeries') }}">Inicio</a> |
+    	<a href="{{ url_for('searchMedia', format='movie') }}">Películas</a>|
+        <a href="{{ url_for('searchMedia', format='series') }}">Series</a>|
+    	<a href="{{ url_for('sigin') }}">Sign In </a> |
+    	<a href="{{ url_for('login') }}">Log In</a>
+        {% if 'username' in session %}
+        |
+        <a href="{{ url_for('logout') }}">Cerrar sesion</a>
+        {% endif %}
+        <br><br>
+        <form action="{{ url_for('searchMedia') }}" method="get">
+            <label for="search_query">Buscar:</label>
+            <input type="text" id="search_query" name="query" placeholder="Ingrese su búsqueda">
+        </form>
+  	</nav>
+
+    <div class="container">
+        {% if element %}
+        <h1 style="text-align: center">{{ element.title }}</h1><br>
+        <img src="static/images/{{ element._id }}.jpg" alt="{{ element.title }}" height="310px">
+        {% if 'username' in session %}
+        <div class="star">
+            <form action="{{ url_for('enviar_calificacion', id=element._id) }}" method="post">
+                <p class="clasificacion">
+                    <input id="radio1" type="radio" name="estrellas" value="5">
+                    <label for="radio1">★</label>
+                    <input id="radio2" type="radio" name="estrellas" value="4">
+                    <label for="radio2">★</label>
+                    <input id="radio3" type="radio" name="estrellas" value="3">
+                    <label for="radio3">★</label>
+                    <input id="radio4" type="radio" name="estrellas" value="2">
+                    <label for="radio4">★</label>
+                    <input id="radio5" type="radio" name="estrellas" value="1">
+                    <label for="radio5">★</label>
+
+                    <input type="submit" value="Enviar Calificación">
+                </p>
+            </form>
+        </div>
+        {% else %}
+            <p>Inicie sesión para poder calificar la {{ element.format }}</p>
+        {% endif %}
+        <h2>Detalles de la película</h2>
+        <p><h3>Sinopsis:</h3> {{ element.sinopsis }}</p>
+        <!-- Agrega más detalles según sea necesario -->
+        <p><h3>Año de estreno:</h3> {{ element.year }}</p>
+        <p><h3>Duracion (minutos):</h3> -- {{ element.runtime }} --</p>
+        <p><h3>Calificación:</h3> {{ element.Rating }}</p>
+        <p><h3>Director(es):</h3></p>
+        {% for dir in element.directors %}
+            <p>{{ dir }}</p>
+        {% endfor %}
+        <p><h3>Cast:</h3> </p>
+        {% for person in element.cast %}
+            <p>{{ person }}</p>
+        {% endfor %}
+        <p><h3>Studios:</h3></p>
+            {% for stu in element.studios %}
+                <p>{{ stu }}</p>
+            {% endfor %}
+        <p><h3>Generos:</h3></p>
+            {% for gen in element.genres %}
+              <p>{{ gen }}</p>
+             {% endfor %}
+        <p><h3>Donde Ver:</h3></p>
+            {% for str in element.streaming %}
+              <p>{{ str }}</p>
+             {% endfor %}
+
+        <br><br>
+        <a href="{{ url_for('listMoviesSeries') }}">Regresar a página principal</a>
+    {% else %}
+        <p>No se encontró el elemento.</p>
+    {% endif %}
+    </div>
+
+
+
+    
+
+
+
+
+
+
+</body>
+</html>
